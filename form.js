@@ -16,12 +16,17 @@ function onsignup(){
 
     
     var newList=document.createElement('li');
-    var text=name_+" - "+email_+" - "+phone_;
+    var text=name_+" - "+email_+" - "+phone_+" - ";
     newList.appendChild(document.createTextNode(text));
     var delButton=document.createElement('button');
     delButton.className='delete';
      delButton.appendChild(document.createTextNode('Delete'));
     newList.appendChild(delButton);
+    var EditButton=document.createElement('button');
+    EditButton.className='edit';
+     EditButton.appendChild(document.createTextNode('Edit'));
+    newList.appendChild(EditButton);
+
     list.appendChild(newList);
 
     // localStorage.setItem('Name' ,document.getElementById('id1').value );
@@ -55,5 +60,15 @@ function removeElement(e){
             localStorage.removeItem(email);
             list.removeChild(li);
         }
+    }
+    else if(e.target.classList.contains('edit')){
+        var li=e.target.parentElement;
+        const arr=li.textContent.split(" - " );
+        var email=arr[1];
+        localStorage.removeItem(email);
+        document.getElementById('id1').value=arr[0];
+        document.getElementById('id2').value=arr[1];
+        document.getElementById('id3').value=arr[3];
+        list.removeChild(li);
     }
 }
