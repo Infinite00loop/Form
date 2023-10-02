@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="form.js"></script>
     <title>Document</title>
     <style>
         form{
@@ -24,7 +25,7 @@
 </head>
 <body>
     
-    <form action="#" onclick="onsignup()" >
+    <form action="#"  >
         <h1 >Book a Call</h1>
         <p style="text-align: center;">Book a call slot and our representation with call you within 1hr of selected time</p><hr>
         <label>Name</label>
@@ -40,20 +41,8 @@
             <input type="time" name="" id="id5" value="11:30" style="width: 44%;" >
         </div><br>
         
-        <input type="button" value="Get a call" style=" margin-left: 1%;color:white; background-color: #ffa500; width: 97%; border-style: hidden; margin-bottom: 2%; border-radius: 2px ;">
+        <input onclick="onsignup()" type="button" value="Get a call" style=" margin-left: 1%;color:white; background-color: #ffa500; width: 97%; border-style: hidden; margin-bottom: 2%; border-radius: 2px ;">
         <br>
     </form>
-    <script>
-        function onsignup(){
-       console.log(document.getElementById('id1').value);
-       console.log(document.getElementById('id2').value);
-       console.log(document.getElementById('id3').value);
-       console.log(document.getElementById('id4').value);
-       console.log(document.getElementById('id5').value);
-
-        }
-      
-        
-    </script>
 </body>
 </html>
