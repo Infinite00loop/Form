@@ -1,3 +1,5 @@
+var list=document.getElementById('list-items');
+list.addEventListener('click' ,removeElement);
 function onsignup(){
     var name_=document.getElementById('id1').value;
     var email_=document.getElementById('id2').value;
@@ -12,10 +14,14 @@ function onsignup(){
     var myObjSerial=JSON.stringify(myObj);
     localStorage.setItem(email_,myObjSerial);
 
-    var list=document.getElementById('list-items');
+    
     var newList=document.createElement('li');
     var text=name_+" - "+email_+" - "+phone_;
     newList.appendChild(document.createTextNode(text));
+    var delButton=document.createElement('button');
+    delButton.className='delete';
+     delButton.appendChild(document.createTextNode('Delete'));
+    newList.appendChild(delButton);
     list.appendChild(newList);
 
     // localStorage.setItem('Name' ,document.getElementById('id1').value );
@@ -40,4 +46,14 @@ function onsignup(){
     //  let myObjDeserialized=JSON.parse(localStorage.getItem('myObj'));
     //  console.log(myObjDeserialized);
 
-
+function removeElement(e){
+    if(e.target.classList.contains('delete')){
+        if(confirm('Are you sure to delete ?')){
+            var li=e.target.parentElement;
+           
+            var email=li.textContent.split(" - ")[1];
+            localStorage.removeItem(email);
+            list.removeChild(li);
+        }
+    }
+}
