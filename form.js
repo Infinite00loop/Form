@@ -56,19 +56,40 @@ function removeElement(e){
         if(confirm('Are you sure to delete ?')){
             var li=e.target.parentElement;
            
-            var email=li.textContent.split(" - ")[1];
-            localStorage.removeItem(email);
+            var email_=li.textContent.split(" - ")[1];
+            console.log(email_)
+            // localStorage.removeItem(email);
+            axios.get('https://crudcrud.com/api/0a3d0f6876dc4abaa5721543c25c5d21/appointments',{
+                params:{email:email_}
+            })
+            .then(
+                (res)=>{
+                    console.log(res);
+                    for(var i=0;i<res.data.length;i++){
+                        if(res.data[i].email==email_)
+                        axios
+                        .delete(`https://crudcrud.com/api/0a3d0f6876dc4abaa5721543c25c5d21/appointments/${res.data[i]._id}`)
+                        .then(res=>console.log(res))
+                        .catch(err=>console.log(err))
+                    }
+                }
+            )
+            .catch(
+                (err)=>console.log(err)
+                
+            )
             list.removeChild(li);
         }
     }
-    else if(e.target.classList.contains('edit')){
-        var li=e.target.parentElement;
-        const arr=li.textContent.split(" - " );
-        var email=arr[1];
-        localStorage.removeItem(email);
-        document.getElementById('id1').value=arr[0];
-        document.getElementById('id2').value=arr[1];
-        document.getElementById('id3').value=arr[3];
-        list.removeChild(li);
-    }
 }
+//     else if(e.target.classList.contains('edit')){
+//         var li=e.target.parentElement;
+//         const arr=li.textContent.split(" - " );
+//         var email=arr[1];
+//         localStorage.removeItem(email);
+//         document.getElementById('id1').value=arr[0];
+//         document.getElementById('id2').value=arr[1];
+//         document.getElementById('id3').value=arr[3];
+//         list.removeChild(li);
+//     }
+// }
