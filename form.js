@@ -1,5 +1,18 @@
 var list=document.getElementById('list-items');
 list.addEventListener('click' ,removeElement);
+window.addEventListener("DOMContentLoaded",()=>{
+    axios.get('https://crudcrud.com/api/0a3d0f6876dc4abaa5721543c25c5d21/appointments')
+    .then((res)=> {
+        console.log(res)
+
+        for(var i=0; i<res.data.length;i++){
+            showData(res.data[i])
+        }
+    })
+    .catch((err) =>{
+        console.log(err)
+    })
+})
 function onsignup(){
     var name_=document.getElementById('id1').value;
     var email_=document.getElementById('id2').value;
